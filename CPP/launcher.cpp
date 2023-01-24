@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <QtCore>
 
 static QWidget *loadUiFile(QWidget *parent){
     QFile file("./launcher.ui");

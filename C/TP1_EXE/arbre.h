@@ -36,7 +36,7 @@ void arbre() {
     printf("\n\nExercice 4 : Algorithme d'affichage d'un arbre en * & =\n");
 
     // On demande et inscrit la valeur de la hauteur dans la variable
-    printf("\nHauteur de l'arbre: ");
+    printf("\nHauteur de l'arbre : ");
     scanf("%d", &hauteur);
     printf("\n");
 

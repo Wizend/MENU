@@ -16,7 +16,7 @@ void factoriel() {
 	int E = 1;
 	int E2 = 1;
 
-	printf("\nEntrer un entier positif :");
+	printf("\nEntrer un entier positif : ");
 	scanf("%d", &A);
 
 	// On calcule la somme de l'entier rentré et 

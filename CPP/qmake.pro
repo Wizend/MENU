@@ -1,11 +1,14 @@
+QT += widgets
+
 SOURCES =   launcher.cpp \
             tp1.exe \
-            tp2.exe \
-            tp3.exe \
 
 TARGET  = MENU
 
-!exists( launcher.cpp || tp1.exe || tp2.exe || tp3.exe ) {
-    error("No launcher.cpp file found )
+!exists( launcher.cpp ) {
+    error("Le fichier [launcher.cpp] n'a pas été trouvé")
 }
 
+!exists( tp1.exe ) {
+    error("Le fichier [tp1.exe] n'a pas été trouvé")
+}

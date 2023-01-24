@@ -10,14 +10,14 @@ void trapeze() {
 	double D;
 
 
-	printf("Exercice 1 : Algorithme de Calcule de la surface d'un trapeze\n");
+	printf("\n\nExercice 1 : Algorithme de Calcule de la surface d'un trapeze\n");
 
 	// On demande et inscrit les valeurs de A,B et C dans les variables 
-	printf("\nEntrer A (en m ) :");
+	printf("\nEntrer A (en m ) : ");
 	scanf("%d", &A);
-	printf("Entrer B (en m ) :");
+	printf("Entrer B (en m ) : ");
 	scanf("%d", &B);
-	printf("Entrer C (en m ) :");
+	printf("Entrer C (en m ) : ");
 	scanf("%d", &C);
 
 	// On fait le calcul avec les valeurs r�cup�r�s et on les caste explicitement (sinon probl�me de float au niveau du r�sultat)

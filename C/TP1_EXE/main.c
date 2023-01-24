@@ -14,12 +14,13 @@
 
 int main(void) {
 
-    trapeze(); //dessiner le schema en python
-    factoriel(); //Marche pas sur MVS
-    ascii(); //FINIS
-    arbre(); //FINIS
-    multi(); //FINIS
-    table(); //FINIS
+    while(yes("\n\nAppuyez sur [O/n] si vous souhaitez (re)commencer")) {
 
-    yes(printf("Souhaitez-vous recommencez ? [O/n]"));
+        trapeze(); //dessiner le schema en python
+        factoriel(); //Marche pas sur MVS
+        ascii(); //FINIS
+        arbre(); //FINIS
+        multi(); //FINIS
+        table(); //FINIS    
+    }
 }

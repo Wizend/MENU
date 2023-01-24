@@ -1,5 +1,6 @@
 #ifndef ASCII_H_INCLUDED
 #define ASCII_H_INCLUDED
+#include "./yes.h"
 
 void ascii() {
 	
@@ -11,8 +12,9 @@ void ascii() {
 	int r;
 	int B = 40;
 
-	printf("\n Appuyer sur [Entrée] pour continuer :");
+	printf("\n Appuyer sur [O/o] pour afficher la table ascii : ");
 	scanf("%d", &r);
+	clear_buffer(stdin);
 	printf("\n");
 
 	// On affiche la table ASCII � partir de 34

@@ -3,22 +3,19 @@
     
 void table() {
             
-    int t;
-    t = 0;       
+    int t = 0;       
     int g;
     int d;
     int val;
-    int moyg;        
-    int moyd;
-    int moy;
-    moyg = 0;
-    moyd = 0;
-    moy = 0;
+    int moyg = 0;        
+    int moyd = 0;
+    int moy = 0;
 
-    printf("\n\n Exercice 6 : Affichage d'un tableau � deux dimensions\n");
+    printf("\n\nExercice 6 : Affichage d'un tableau � deux dimensions\n");
         
     printf("Entrez la taille du tableau : ");
     scanf("%d", &t);
+    
     if (t == 0) {
         return;
     }

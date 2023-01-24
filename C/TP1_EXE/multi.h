@@ -12,7 +12,7 @@ void multi() {
 	int h = 1;
 
 	// On demande et inscrit la valeur d'un entier dans la variable
-	printf("\nEntrer un entier positif :");
+	printf("\nEntrer un entier positif : ");
 	scanf("%d", &multip);
 
 

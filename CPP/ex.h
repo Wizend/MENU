@@ -24,8 +24,10 @@
 
 QT_BEGIN_NAMESPACE
 
-class Ui_MainWindow
-{
+class Ui_MainWindow : public QObject {
+
+    Q_OBJECT
+
 public:
     QWidget *centralwidget;
     QTextBrowser *header;
@@ -50,8 +52,16 @@ public:
     QTreeWidget *treeWidget;
     QTextBrowser *img_gauche;
 
-    void setupUi(QMainWindow *MainWindow)
-    {
+public slots:
+    void actionsUi() {
+        QString program("cmd.exe");
+        QStringList parameters;
+        parameters << QCoreApplication::applicationDirPath() << "tp1.exe";
+        QProcess::startDetached(program, parameters);
+}
+
+
+    void setupUi(QMainWindow *MainWindow) {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->resize(628, 476);
@@ -166,12 +176,13 @@ public:
         img_gauche->setObjectName(QString::fromUtf8("img_gauche"));
         img_gauche->setGeometry(QRect(10, 80, 151, 391));
         MainWindow->setCentralWidget(centralwidget);
-
+        
         retranslateUi(MainWindow);
 
+        QObject::connect(pushButton, SIGNAL(clicked()), MainWindow, SLOT(actionsUi()));      
+        
         stackedWidget->setCurrentIndex(0);
-
-
+        
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
 
@@ -252,6 +263,8 @@ public:
     } // retranslateUi
 
 };
+
+
 
 namespace Ui {
     class MainWindow: public Ui_MainWindow {};

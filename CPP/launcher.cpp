@@ -2,23 +2,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <QtWidgets>
+#include <QtCore>
+#include <QApplication>
+#include "ex.h"
 
-static QWidget *loadUiFile(QWidget *parent){
-    QFile file("./launcher.ui");
-    file.open(QIODevice::ReadOnly);
+// void Ui_MainWindow::actionsUi() {
 
-    QUiLoader loader;
-    return loader.load(&file, parent);
-}
+//         QString program("cmd.exe");
+//         QStringList parameters;
+//         parameters << QCoreApplication::applicationDirPath() << "tp1.exe";
+//         QProcess::startDetached(program, parameters);
+        
+// }
 
-int main(){
+int main(int argc, char *argv[]){
 
-    int ui_TP1 = findChild<QPushButton*>("pushButton");
-    ui_TP1.clicked().system("./C/tp1.exe");
-
-    // ui_TP2 = findChild<QPushButton*>("pushButton_2");
-    // ui_TP2.clicked().system("../tp2.exe");
-
-    // ui_TP3 = findChild<QPushButton*>("pushButton_3");
-    // ui_TP3.clicked().system("../tp3.exe");
+    QApplication app(argc, argv);
+    return app.exec();
 }

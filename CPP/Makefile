@@ -52,10 +52,8 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = launcher.cpp \
-		tp1.exe 
-OBJECTS       = launcher.o \
-		tp1.o
+SOURCES       = launcher.cpp 
+OBJECTS       = launcher.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -139,8 +137,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exceptions.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
-		qmake.pro  launcher.cpp \
-		tp1.exe
+		qmake.pro  launcher.cpp
 QMAKE_TARGET  = MENU
 DESTDIR       = 
 TARGET        = MENU
@@ -336,7 +333,7 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents launcher.cpp tp1.exe $(DISTDIR)/
+	$(COPY_FILE) --parents launcher.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -386,11 +383,8 @@ compiler_clean: compiler_moc_predefs_clean
 
 ####### Compile
 
-launcher.o: launcher.cpp 
+launcher.o: launcher.cpp ex.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o launcher.o launcher.cpp
-
-tp1.o: tp1.exe 
-	$(CC) -c $(CFLAGS) $(INCPATH) -o tp1.o tp1.exe
 
 ####### Install
 

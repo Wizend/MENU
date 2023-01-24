@@ -60,7 +60,6 @@ public slots:
         QProcess::startDetached(program, parameters);
 }
 
-
     void setupUi(QMainWindow *MainWindow) {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));

@@ -1,27 +1,27 @@
-NAME    =    tp1
+NAME	=	tp1.exe
 
-CC    =    gcc
+CC	=	gcc
 
-RM    =    rm -f
+RM	=	rm -f
 
-SRCS    =   main.c
+SRCS	=	main.c
 
-OBJS    =    $(SRCS:.c=.o)
+OBJS	=	$(SRCS:.c=.o)
 
-CFLAGS = -I ./TP1_EXE/
-CFLAGS += -Wall -Wextra -g3
+CFLAGS	=	-I ./TP1_EXE/
+CFLAGS	+=	-Wall -Wextra -g3
 
-all: $(NAME)
+all:	$(NAME)
 
-$(NAME): $(OBJS)
-     $(CC) $(OBJS) -o $(NAME) $(LDFLAGS)
+$(NAME):	$(OBJS)
+	$(CC) $(OBJS) -o $(NAME) $(LDFLAGS)
 
 clean:
-    $(RM) $(OBJS)
+	$(RM) $(OBJS)
 
-fclean: clean
-    $(RM) $(NAME)
+fclean:	clean
+	$(RM) $(NAME)
 
-re: fclean all
+re:	fclean all
 
-.PHONY: all clean fclean re
+.PHONY:	all clean fclean re

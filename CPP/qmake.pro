@@ -1,6 +1,6 @@
 QT += widgets
 
-SOURCES =   launcher.cpp \
+SOURCES =   launcher.cpp
 
 TARGET  = MENU
 

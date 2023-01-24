@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <QtCore>
 
 static QWidget *loadUiFile(QWidget *parent){
     QFile file("./launcher.ui");
@@ -14,7 +13,7 @@ static QWidget *loadUiFile(QWidget *parent){
 
 int main(){
 
-    ui_TP1 = findChild<QPushButton*>("pushButton");
+    int ui_TP1 = findChild<QPushButton*>("pushButton");
     ui_TP1.clicked().system("./C/tp1.exe");
 
     // ui_TP2 = findChild<QPushButton*>("pushButton_2");

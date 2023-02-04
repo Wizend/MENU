@@ -10,5 +10,8 @@
 int main(int argc, char *argv[]){
 
     QApplication app(argc, argv);
+
+    qDebug() << "A";
+
     return app.exec();
 }

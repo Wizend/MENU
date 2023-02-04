@@ -21,6 +21,7 @@
 #include <QtWidgets/QTextBrowser>
 #include <QtWidgets/QTreeWidget>
 #include <QtWidgets/QWidget>
+#include <QProcess>
 
 QT_BEGIN_NAMESPACE
 
@@ -56,7 +57,7 @@ public slots:
     void actionsUi() {
         QString program("cmd.exe");
         QStringList parameters;
-        parameters << QCoreApplication::applicationDirPath() << "tp1.exe";
+        parameters << QCoreApplication::applicationDirPath() << "tp1.bat";
         QProcess::startDetached(program, parameters);
 }
 
@@ -262,8 +263,6 @@ public slots:
     } // retranslateUi
 
 };
-
-
 
 namespace Ui {
     class MainWindow: public Ui_MainWindow {};

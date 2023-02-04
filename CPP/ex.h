@@ -25,7 +25,7 @@
 
 QT_BEGIN_NAMESPACE
 
-class Ui_MainWindow : public QObject {
+class Ui_MainWindow : public QMainWindow {
 
     Q_OBJECT
 

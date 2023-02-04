@@ -9,9 +9,11 @@
 
 int main(int argc, char *argv[]){
 
-    QApplication app(argc, argv);
+    QApplication a(argc, argv);
+    QMainWindow Ui_MainWindow;
+    Ui::MainWindow ui;
+    ui.setupUi(&Ui_MainWindow);
+    Ui_MainWindow.show();
+    return a.exec();
 
-    qDebug() << "A";
-
-    return app.exec();
 }

@@ -22,6 +22,7 @@
 #include <QtWidgets/QTreeWidget>
 #include <QtWidgets/QWidget>
 #include <QProcess>
+#include <windows.h>
 
 QT_BEGIN_NAMESPACE
 
@@ -53,13 +54,13 @@ public:
     QTreeWidget *treeWidget;
     QTextBrowser *img_gauche;
 
-public slots:
-    void actionsUi() {
-        QString program("cmd.exe");
-        QStringList parameters;
-        parameters << QCoreApplication::applicationDirPath() << "tp1.bat";
-        QProcess::startDetached(program, parameters);
-}
+// public slots:
+//     void actionsUi() {
+        // QString program("cmd.exe");
+        // QStringList parameters;
+        // parameters << QCoreApplication::applicationDirPath() << "tp1.exe";
+        // QProcess::startDetached(program, parameters);
+// }
 
     void setupUi(QMainWindow *MainWindow) {
         if (MainWindow->objectName().isEmpty())
@@ -124,6 +125,18 @@ public slots:
 
         pushButton = new QPushButton(layoutWidget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        QObject::connect(pushButton, &QPushButton::clicked, [](){
+            QProcess process;
+            process.setProgram("C:\\windows\\system32\\cmd.exe");
+            process.setArguments({"/c", ".\\tp1.exe"});
+            process.setCreateProcessArgumentsModifier(
+                        [](QProcess::CreateProcessArguments *args) {
+                args->flags |= CREATE_NEW_CONSOLE;
+                args->startupInfo->dwFlags &=~ STARTF_USESTDHANDLES;
+            });
+            process.start();
+            process.waitForFinished();
+        });
 
         formLayout->setWidget(0, QFormLayout::FieldRole, pushButton);
 
@@ -179,8 +192,6 @@ public slots:
         
         retranslateUi(MainWindow);
 
-        QObject::connect(pushButton, SIGNAL(clicked()), MainWindow, SLOT(actionsUi()));      
-        
         stackedWidget->setCurrentIndex(0);
         
         QMetaObject::connectSlotsByName(MainWindow);

@@ -137,24 +137,32 @@ public:
             process.start();
             process.waitForFinished();
         });
-
         formLayout->setWidget(0, QFormLayout::FieldRole, pushButton);
 
         label_2 = new QLabel(layoutWidget);
         label_2->setObjectName(QString::fromUtf8("label_2"));
         label_2->setFont(font);
-
         formLayout->setWidget(1, QFormLayout::LabelRole, label_2);
 
         pushButton_2 = new QPushButton(layoutWidget);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-
+        QObject::connect(pushButton_2, &QPushButton::clicked, [](){
+            QProcess process;
+            process.setProgram("C:\\windows\\system32\\cmd.exe");
+            process.setArguments({"/c", ".\\tp2.exe"});
+            process.setCreateProcessArgumentsModifier(
+                        [](QProcess::CreateProcessArguments *args) {
+                args->flags |= CREATE_NEW_CONSOLE;
+                args->startupInfo->dwFlags &=~ STARTF_USESTDHANDLES;
+            });
+            process.start();
+            process.waitForFinished();
+        });
         formLayout->setWidget(1, QFormLayout::FieldRole, pushButton_2);
 
         label_3 = new QLabel(layoutWidget);
         label_3->setObjectName(QString::fromUtf8("label_3"));
         label_3->setFont(font);
-
         formLayout->setWidget(2, QFormLayout::LabelRole, label_3);
 
         pushButton_3 = new QPushButton(layoutWidget);

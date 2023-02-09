@@ -4,7 +4,10 @@ CC	=	gcc
 
 RM	=	rm -f
 
-SRCS	=	date.c
+SRCS	=	\
+	main.c	\
+	date.c	\
+	sexe.c
 
 OBJS	=	$(SRCS:.c=.o)
 

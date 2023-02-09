@@ -54,14 +54,6 @@ public:
     QTreeWidget *treeWidget;
     QTextBrowser *img_gauche;
 
-// public slots:
-//     void actionsUi() {
-        // QString program("cmd.exe");
-        // QStringList parameters;
-        // parameters << QCoreApplication::applicationDirPath() << "tp1.exe";
-        // QProcess::startDetached(program, parameters);
-// }
-
     void setupUi(QMainWindow *MainWindow) {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
@@ -167,7 +159,18 @@ public:
 
         pushButton_3 = new QPushButton(layoutWidget);
         pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
-
+        QObject::connect(pushButton_3, &QPushButton::clicked, [](){
+            QProcess process;
+            process.setProgram("C:\\windows\\system32\\cmd.exe");
+            process.setArguments({"/c", ".\\tp3.exe"});
+            process.setCreateProcessArgumentsModifier(
+                        [](QProcess::CreateProcessArguments *args) {
+                args->flags |= CREATE_NEW_CONSOLE;
+                args->startupInfo->dwFlags &=~ STARTF_USESTDHANDLES;
+            });
+            process.start();
+            process.waitForFinished();
+        });
         formLayout->setWidget(2, QFormLayout::FieldRole, pushButton_3);
 
         arbo = new QGroupBox(centralwidget);

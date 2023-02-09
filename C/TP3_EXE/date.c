@@ -12,21 +12,6 @@ bool bissextile (unsigned annee) {
 
 unsigned short nbJours (enum Mois mois) {
     
-    // int j31 = 31;
-    // int j30 = 30;
-    // int jfev = 28;
-    // int jfev_bis = 29;
-
-    // if( mois == Janvier || mois == Mars || mois == Mai || mois == Juillet || mois == Aout || mois == Octobre || mois == Decembre){
-    //     printf("\nLe mois de %d comporte %d jours.", mois, j31);
-    // } else if (mois == Avril || mois == Juin || mois == Septembre || mois == Novembre){
-    //     printf("\nLe mois de %d comporte %d jours.", mois, j30);
-    // } else if (mois == Fevrier && bissextile(true) ){
-    //     printf("\nLe mois de %d comporte %d jours car l'annee choisie est bissextile.", mois, jfev_bis);
-    // }else {
-    //     printf("\nLe mois de %d comporte %d jours.", mois, jfev);
-    // }
-    
     static const unsigned short nbj1[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     if(bissextile(true)) {
         static const unsigned short nbj2[] = {0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};

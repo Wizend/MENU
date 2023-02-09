@@ -14,6 +14,12 @@
 
 int main(void) {
 
+    printf("#################\n");
+    printf("#               #\n");
+    printf("#      TP1      #\n");
+    printf("#               #\n");
+    printf("#################\n");
+
     while(yes("\n\nAppuyez sur [O/n] si vous souhaitez (re)commencer")) {
 
         trapeze(); //dessiner le schema en python

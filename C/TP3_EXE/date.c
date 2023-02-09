@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "./yes.h"
 #include <time.h>
+#include "./yes.h"
 // Sécuriser les fonctions
 // Optimiser les fonctions
 // Faire les tests unitaires
-// Modifier le nom des exercices (apréritif, entrées, plat, dessert) et tp (Menu boucle, pointeur, etc) pour en faire un vrai menu (gastro)
-// Rajouter une fonction date par défaut
+
+#define MEM(type) ((type*) malloc( sizeof(type) /* * taille (et le mettre en parametre)*/))
 
 enum Mois { Janvier=1, Fevrier, Mars, Avril, Mai, Juin, Juillet, Aout, Septembre, Octobre, Novembre, Decembre};
 
@@ -31,15 +31,14 @@ short int comparer_Date (const Date* d1, const Date* d2); // #include <time.h> :
 bool bissextile (unsigned annee) {
 
     if (annee%400 == 0) {
-        printf("\n%d est une annee bissextile", annee);
-        return true;
+        return printf("\nC'est une annee bissextile", annee);
     } else {
-        printf("\n%d n'est pas une annee bissextile", annee);
-        return false;
-    }
-}
+        return printf("\nCe n'est pas une annee bissextile", annee);
+    };
+};
 
 unsigned short nbJours (enum Mois mois) {
+    
     int j31 = 31;
     int j30 = 30;
     int jfev = 28;
@@ -54,106 +53,74 @@ unsigned short nbJours (enum Mois mois) {
     }else {
         printf("\nLe mois de %d comporte %d jours.", mois, jfev);
     }
-    return 0;
-}
+    
+    static const unsigned short nbj1[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    if(bissextile != 0) {
+        static const unsigned short nbj2[] = {0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        return nbj2[mois];
+    };
+
+    return nbj1[mois];
+};
 
 const char* MoisToString (enum Mois mois) { 
 
-    const char *enumArray [12] = {
-        [0] = "Janvier", 
-        [1] = "Fevrier", 
-        [2] = "Mars",
-        [3] = "Avril",
-        [4] = "Mai",
-        [5] = "Juin",
-        [6] = "Juillet",
-        [7] = "Aout",
-        [8] = "Septembre",
-        [9] = "Octobre",
-        [10] = "Novembre",
-        [11] = "Decembre"
+    const char * months[] = { 
+        "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet",
+        "Août", "Septembre", "Octobre", "Novembre", "Décembre"
     };
 
-    if (mois == Janvier) {
-        return enumArray[0];
-    }
-    if (mois == 2) {
-        return enumArray[1];
-    }
-    if (mois == 3) {
-        return enumArray[2];
-    }
-    if (mois == 4) {
-        return enumArray[3];
-    }
-    if (mois == 5) {
-        return enumArray[4];
-    }
-    if (mois == 6) {
-        return enumArray[5];
-    }
-    if (mois == 7) {
-        return enumArray[6];
-    }
-    if (mois == 8) {
-        return enumArray[7];
-    }
-    if (mois == 9) {
-        return enumArray[8];
-    }
-    if (mois == 10) {
-        return enumArray[9];
-    }
-    if (mois == 11) {
-        return enumArray[10];
-    }
-    if (mois == 12) {
-        return enumArray[11];
-    }
-
-    return 0;
 };
 
 Date* creer_Date() {
 
-    Date *d = (Date*) malloc(sizeof(Date));
+    Date *d = MEM(Date);
+    if(d == NULL) {
+        return NULL;
+    };
 
     return d;
+
 };
 
 void liberer_Date (Date** d) {
-    
+
     if(yes("\nSouhaitez-vous liberer la date precedemment enregistre ? [O/n]")){
-        if (*d) {
-            free(*d);
-            *d = NULL;
+        if (d != NULL ) {
+            free(d);
+            d = NULL;
         };
     };
 };
 
-void initialiser_date (Date* d) {
-    int size_d = sizeof(d) % sizeof(d[0]);
-    int n = 1;
+void initialiser_date (Date* d, enum Mois mois) {
 
-    while ( n == 0 ) {
-    creer_Date();
-
-    printf("\nDate n°1 (format : jj/mm/aaaa) : ");
-        if (scanf("%d %u %u", d->jour, d->mois, d->annee) != 3) {
-            printf("Mauvaise saisie !\n");
-            return EXIT_FAILURE;
-        };
-    n--;
+    const char * days[] = {
+        "Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"
     };
 
-    printf("Date : %d - %u - %u", d->jour, d->mois, d->annee);
-};
-
-// void increment_Date (Date* d, unsigned n) {
-
+    printf("\nDate (format : jj/mm/aaaa) : ");
+    if (scanf("%d %s %u", days[d->jour], MoisToString(mois)[d->mois], d->annee) != 3) {
+        printf("Mauvaise saisie !\n");
+    };
     
+    if (d != NULL ) {
+        printf("Date : %d - %s - %u", days[d->jour], MoisToString(mois)[d->mois], d->annee);
+        printf(bissextile(stdout));
+    } else {
+    time_t timestamp = time( NULL );
+    struct tm * now = localtime( & timestamp );
 
-// };
+    printf( "%02d-%02d-%4d\n", now->tm_mday, now->tm_mon+1, now->tm_year+1900);
+     
+    printf( "Nous sommes le %s %d %s %d\n", days[now->tm_wday], now->tm_mday, MoisToString(mois)[now->tm_mon], now->tm_year+1900);
+    };
+    return 0;
+};
+
+void increment_Date (Date* d, unsigned n) {
+    
+};
 
 
 
@@ -169,6 +136,63 @@ void initialiser_date (Date* d) {
     //     (d[total = nbr_date+i]);
     // }
     // printf("De la mémoire pour %d a ete alloue", nbr_date);
+
+
+// ****** MoisToString() TEST ******
+
+    // const char *enumArray [12] = {
+    //     [0] = "Janvier", 
+    //     [1] = "Fevrier", 
+    //     [2] = "Mars",
+    //     [3] = "Avril",
+    //     [4] = "Mai",
+    //     [5] = "Juin",
+    //     [6] = "Juillet",
+    //     [7] = "Aout",
+    //     [8] = "Septembre",
+    //     [9] = "Octobre",
+    //     [10] = "Novembre",
+    //     [11] = "Decembre"
+    // };
+
+    // if (mois == Janvier) {
+    //     return enumArray[0];
+    // }
+    // if (mois == 2) {
+    //     return enumArray[1];
+    // }
+    // if (mois == 3) {
+    //     return enumArray[2];
+    // }
+    // if (mois == 4) {
+    //     return enumArray[3];
+    // }
+    // if (mois == 5) {
+    //     return enumArray[4];
+    // }
+    // if (mois == 6) {
+    //     return enumArray[5];
+    // }
+    // if (mois == 7) {
+    //     return enumArray[6];
+    // }
+    // if (mois == 8) {
+    //     return enumArray[7];
+    // }
+    // if (mois == 9) {
+    //     return enumArray[8];
+    // }
+    // if (mois == 10) {
+    //     return enumArray[9];
+    // }
+    // if (mois == 11) {
+    //     return enumArray[10];
+    // }
+    // if (mois == 12) {
+    //     return enumArray[11];
+    // }
+
+    // return 0;
 
 
 

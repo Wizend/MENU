@@ -15,6 +15,12 @@
 
 int main(void) {
 
+    printf("#################\n");
+    printf("#               #\n");
+    printf("#      TP2      #\n");
+    printf("#               #\n");
+    printf("#################\n");
+
     while(yes("\n\nAppuyez sur [O/n] si vous souhaitez (re)commencer")) {
         
         int n;

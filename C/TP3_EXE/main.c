@@ -55,14 +55,14 @@ int main (void) {
             };
             
             int n;
-            if(yes("\n\nSouhaitez-vous incrementer la premiere date ? [O/N]")) {
-                
+            if (yes("\n\nSouhaitez-vous incrementer la premiere date ? [O/N]")) {
                 printf("De combien de jour : ");
                 scanf("%d", &n);
                 increment_Date(d1, n);
                 afficher_Date(d1);
+            };
 
-            } else if (yes("\nSouhaitez-vous incrementer la seconde date ? [O/N]")) {
+            if (yes("\n\nSouhaitez-vous incrementer la seconde date ? [O/N]")) {
             
                 printf("De combien de jour : ");
                 scanf("%d", &n);
@@ -72,14 +72,16 @@ int main (void) {
             
             liberer_Date(&d1);
             liberer_Date(&d2);
-        
-        } else if (yes("\n\nSouhaitez-vous inscrire une nouvelle personne dans votre liste de contact ? [O/N]")) {
+        };
+            
+        if (yes("\n\nSouhaitez-vous inscrire une nouvelle personne dans votre liste de contact ? [O/N]")) {
             
             Personne *p1 = creer_Personne();
             initialiser_Personne(p1);
             afficher_Personne(p1);
             liberer_Personne(&p1);
+        
         };
-    return 0;
     };
+    return 0;
 };

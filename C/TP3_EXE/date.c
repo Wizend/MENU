@@ -1,6 +1,5 @@
 #include "date.h"
 
-
 bool bissextile (unsigned annee) {
 
     if (annee%400 == 0) {
@@ -24,15 +23,14 @@ unsigned short nbJours (enum Mois mois) {
 const char* MoisToString (enum Mois mois) { 
 
     const char * months[] = { 
-        "0", "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet",
-        "Août", "Septembre", "Octobre", "Novembre", "Décembre"
+        "0", "Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet",
+        "Aout", "Septembre", "Octobre", "Novembre", "Decembre"
     };
 
     return months[mois];
 };
 
 Date* creer_Date() {
-
     Date *d = MEM(Date);
     if(d == NULL) {
         return NULL;
@@ -51,7 +49,7 @@ void liberer_Date (Date** d) {
 
 void initialiser_Date (Date* d) {
 
-    printf("\nDate (format : jj/mm/aaaa) : ");
+    printf("\nDate (format : jj mm aaaa) : ");
     scanf("%hd %u %u", &(d->jour), &(d->mois), &(d->annee));
 };
 

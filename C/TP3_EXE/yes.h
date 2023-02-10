@@ -39,7 +39,7 @@ int yes(const char *prompt)
                     return 0;
 
                 default:
-                    printf("*** Entrée Invalide  *** <Seulement (O)ui ou (N)on sont acceptes>\n");
+                    printf("*** Entree Invalide  *** <Seulement (O)ui ou (N)on sont acceptes>\n");
             }
         }
     } while(ret != EOF);

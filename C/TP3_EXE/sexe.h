@@ -5,7 +5,7 @@
 
 #define MEM(type) ((type*) malloc( sizeof(type) /* * taille (et le mettre en parametre)*/))
 
-enum Sexe { INCONNUE=0, MASCULIN, FEMININ, };
+enum Sexe {INCONNUE=0, MASCULIN, FEMININ};
 
 typedef struct {
     
@@ -21,7 +21,7 @@ const char* SexeToString(enum Sexe s);
 
 Personne* creer_Personne();
 void initialiser_Personne(Personne*);
-void liberer_Personne(Personne** d);
-void afficher_Personne(const Personne* d);
+void liberer_Personne(Personne** p);
+void afficher_Personne(const Personne* p);
 
 #endif

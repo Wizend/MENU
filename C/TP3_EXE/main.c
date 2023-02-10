@@ -35,7 +35,7 @@ int main (void) {
                 printf("\nEt c'est une annee non-bissextile\n");
             };
             afficher_Date(d2);
-            if (bissextile(d1->annee)){
+            if (bissextile(d2->annee)){
                 printf("\nEt c'est une annee bissextile\n");
             } else {
                 printf("\nEt c'est une annee non-bissextile\n");
@@ -44,7 +44,7 @@ int main (void) {
             int i = comparer_Date(d1, d2);
             switch(i) {
                 case -1:
-                    printf("\n%d/%d/%d est une date anterieur a %d/%d %d", d1->jour, d1->mois, d1->annee, d2->jour, d2->mois, d2->annee);
+                    printf("\n%d/%d/%d est une date anterieur a %d/%d/%d", d1->jour, d1->mois, d1->annee, d2->jour, d2->mois, d2->annee);
                     break;
                 case 1: 
                     printf("\n%d/%d/%d  est une date ulterieur a %d/%d/%d",d1->jour,d1->mois,d1->annee,d2->jour, d2->mois, d2->annee);
@@ -68,8 +68,22 @@ int main (void) {
                 scanf("%d", &n);
                 increment_Date(d2, n);
                 afficher_Date(d2);
+            };     
+
+            int f = comparer_Date(d1, d2);
+            printf("\nDésormais :\n");
+            switch(f) {
+                case -1:
+                    printf("\n%d/%d/%d est une date anterieur a %d/%d/%d", d1->jour, d1->mois, d1->annee, d2->jour, d2->mois, d2->annee);
+                    break;
+                case 1: 
+                    printf("\n%d/%d/%d  est une date ulterieur a %d/%d/%d",d1->jour,d1->mois,d1->annee,d2->jour, d2->mois, d2->annee);
+                    break;
+                case 0: 
+                    printf("\n%d/%d/%d est la meme date que %d/%d/%d", d1->jour, d1->mois, d1->annee, d2->jour, d2->mois, d2->annee);
+                    break;
             };
-            
+
             liberer_Date(&d1);
             liberer_Date(&d2);
         };
@@ -80,7 +94,6 @@ int main (void) {
             initialiser_Personne(p1);
             afficher_Personne(p1);
             liberer_Personne(&p1);
-        
         };
     };
     return 0;

@@ -31,18 +31,18 @@ const char* MoisToString (enum Mois mois) {
 };
 
 Date* creer_Date() {
+    
     Date *d = MEM(Date);
     if(d == NULL) {
         return NULL;
     };
 
     return d;
-
 };
 
 void liberer_Date (Date** d) {
-    if (d != NULL ) {
-        free(d);
+    if (*d != NULL ) {
+        free(*d);
         d = NULL;
     };
 };

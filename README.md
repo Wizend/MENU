@@ -1,6 +1,7 @@
-    #MENU des TP en C#
+#MENU des TP en C
     
-Recuperer le code : git clone git@github.com:Wizend/MENU.git
+Recuperer le code :
+#git clone git@github.com:Wizend/MENU.git#
 
 L'executable se trouve dans /CPP/releases/CPP.exe
 --> Les executables concernant les TPs tp(1/2/3).exe doivent se trouver dans le même dossier que CPP.exe
